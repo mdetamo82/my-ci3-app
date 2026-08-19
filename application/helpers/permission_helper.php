@@ -1,4 +1,5 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Safely encodes a value for HTML output.
@@ -52,74 +53,37 @@ function safe_html($input, bool $preserveLineBreaks = false): string
 
 
 /**
- * Check whether the current user has a permission method.
+ * Check whether the current user has a permission.
  *
- * Permission is identified by the `method` column in the
- * permissions table.
+ * This function delegates authorization to the centralized
+ * Authorization library.
  *
- * Examples:
- *
- *     has_permission('view_staff');
- *     has_permission('add_staff');
- *     has_permission('edit_staff');
- *     has_permission('delete_staff');
- *
- * @param string $method
+ * @param string $permission
  * @return bool
  */
-function has_permission($method)
+function has_permission($permission)
 {
     $CI =& get_instance();
 
-    // User must be authenticated.
-    if (!$CI->ion_auth->logged_in()) {
-        return false;
-    }
+    $CI->load->library('authorization');
 
-    $user = $CI->ion_auth->user()->row();
+    return $CI->authorization->can($permission);
+}
 
-    if (!$user) {
-        return false;
-    }
 
-    // Get all groups belonging to the current user.
-    $groups = $CI->ion_auth
-        ->get_users_groups($user->id)
-        ->result();
+/**
+ * Require a permission.
+ *
+ * This is intended for controller authorization boundaries.
+ *
+ * @param string $permission
+ * @return void
+ */
+function require_permission($permission)
+{
+    $CI =& get_instance();
 
-    if (empty($groups)) {
-        return false;
-    }
+    $CI->load->library('authorization');
 
-    // Administrator has unrestricted access.
-    foreach ($groups as $group) {
-        if ($group->name === 'admin') {
-            return true;
-        }
-    }
-
-    // Find the permission by METHOD.
-    $permission = $CI->db
-        ->select('id')
-        ->where('method', $method)
-        ->get('permissions')
-        ->row();
-
-    if (!$permission) {
-        return false;
-    }
-
-    // Check whether any user group owns this permission.
-    foreach ($groups as $group) {
-        $exists = $CI->db
-            ->where('group_id', $group->id)
-            ->where('permission_id', $permission->id)
-            ->count_all_results('group_permissions');
-
-        if ($exists > 0) {
-            return true;
-        }
-    }
-
-    return false;
+    $CI->authorization->require_permission($permission);
 }

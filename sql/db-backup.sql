@@ -76,30 +76,6 @@ CREATE TABLE `group_permissions` (
   CONSTRAINT `fk_gp_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=807 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (521, 3, 36, '2025-06-19 11:54:09');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (764, 1, 36, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (765, 1, 37, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (766, 1, 38, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (767, 1, 39, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (768, 1, 40, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (769, 1, 45, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (770, 1, 49, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (771, 1, 53, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (772, 1, 54, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (773, 1, 55, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (774, 1, 56, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (775, 1, 57, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (776, 1, 58, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (777, 1, 59, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (778, 1, 60, '2025-06-30 00:20:35');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (780, 2, 36, '2025-06-30 00:21:22');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (781, 2, 40, '2025-06-30 00:21:22');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (782, 2, 45, '2025-06-30 00:21:22');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (802, 4, 36, '2025-07-01 15:35:05');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (803, 4, 38, '2025-07-01 15:35:05');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (804, 4, 49, '2025-07-01 15:35:05');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (805, 4, 50, '2025-07-01 15:35:05');
-INSERT INTO `group_permissions` (`id`, `group_id`, `permission_id`, `created_at`) VALUES (806, 4, 51, '2025-07-01 15:35:05');
 
 
 #
@@ -207,32 +183,18 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (1, 'dashboard_view_dashboard', 'View Dashboard', 'dashboard', 'view_dashboard');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (2, 'sample_view_sample', 'View Sample Records', 'sample', 'view_sample');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (3, 'sample_add_sample', 'Add Sample Record', 'sample', 'add_sample');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (4, 'sample_edit_sample', 'Edit Sample Record', 'sample', 'edit_sample');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (5, 'sample_delete_sample', 'Delete Sample Record', 'sample', 'delete_sample');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (6, 'settings_manage_settings', 'Manage Settings', 'settings', 'manage_settings');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (7, 'users_manage_users', 'Manage Users', 'users', 'manage_users');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (8, 'roles_manage_roles_permissions', 'Manage Roles & Permissions', 'roles', 'manage_roles_permissions');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (9, 'backup_manage_backup', 'Manage Backup & Restore', 'backup', 'manage_backup');
+INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`) VALUES (10, 'logs_view_logs', 'View Logs / Audit Trail', 'logs', 'view_logs');
 
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (36, 'staff_view_staff', 'View Staff', 'staff', 'view_staff', '2025-06-19 11:52:53', '2025-06-19 11:52:53');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (37, 'staff_add_staff', 'Add Staff', 'staff', 'add_staff', '2025-06-19 11:52:53', '2025-06-19 11:52:53');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (38, 'staff_edit_staff', 'Edit Staff', 'staff', 'edit_staff', '2025-06-19 11:52:53', '2025-06-19 11:52:53');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (39, 'staff_delete_staff', 'Delete Staff', 'staff', 'delete_staff', '2025-06-19 11:52:54', '2025-06-19 11:52:54');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (40, 'hawala_view_hawala', 'View Hawala', 'hawala', 'view_hawala', '2025-06-19 11:52:54', '2025-06-19 11:52:54');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (41, 'hawala_add_hawala', 'Add Hawala', 'hawala', 'add_hawala', '2025-06-19 11:52:54', '2025-06-19 11:52:54');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (42, 'hawala_edit_hawala', 'Edit Hawala', 'hawala', 'edit_hawala', '2025-06-19 11:52:55', '2025-06-19 11:52:55');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (43, 'hawala_delete_hawala', 'Delete Hawala', 'hawala', 'delete_hawala', '2025-06-19 11:52:55', '2025-06-19 11:52:55');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (45, 'loan_view_loan', 'View Loan', 'loan', 'view_loan', '2025-06-19 14:15:59', '2025-06-19 14:15:59');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (46, 'loan_add_loan', 'Add Loan', 'loan', 'add_loan', '2025-06-19 14:16:00', '2025-06-19 14:16:00');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (47, 'loan_edit_loan', 'Edit Loan', 'loan', 'edit_loan', '2025-06-19 14:16:00', '2025-06-19 14:16:00');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (48, 'loan_delete_loan', 'Delete Loan', 'loan', 'delete_loan', '2025-06-19 14:16:01', '2025-06-19 14:16:01');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (49, 'Staff_transaction_view_staff_transaction', 'Staff Transaction', 'Staff_transaction', 'view_staff_transaction', '2025-06-19 22:10:30', '2025-06-19 22:10:30');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (50, 'Staff_transaction_add_staff_transaction', 'Add Staff Transaction', 'Staff_transaction', 'add_staff_transaction', '2025-06-19 22:10:31', '2025-06-19 22:10:31');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (51, 'Staff_transaction_edit_staff_transaction', 'Edit Staff Transaction', 'Staff_transaction', 'edit_staff_transaction', '2025-06-19 22:10:31', '2025-06-19 22:10:31');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (52, 'Staff_transaction_delete_staff_transaction', 'Delete Staff Transaction', 'Staff_transaction', 'delete_staff_transaction', '2025-06-19 22:10:32', '2025-06-19 22:10:32');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (53, 'Hawala_transaction_view_hawala_transaction', 'Hawala Transaction', 'Hawala_transaction', 'view_hawala_transaction', '2025-06-19 22:10:32', '2025-06-19 22:10:32');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (54, 'Hawala_transaction_add_hawala_transaction', 'Add Hawala Transaction', 'Hawala_transaction', 'add_hawala_transaction', '2025-06-19 22:10:32', '2025-06-19 22:10:32');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (55, 'Hawala_transaction_edit_hawala_transaction', 'Edit Hawala Transaction', 'Hawala_transaction', 'edit_hawala_transaction', '2025-06-19 22:10:32', '2025-06-19 22:10:32');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (56, 'Hawala_transaction_delete_hawala_transaction', 'Delete Hawala Transaction', 'Hawala_transaction', 'delete_hawala_transaction', '2025-06-19 22:10:32', '2025-06-19 22:10:32');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (57, 'Loan_transaction_view_loan_transaction', 'Loan Transaction', 'Loan_transaction', 'view_loan_transaction', '2025-06-19 22:10:33', '2025-06-19 22:10:33');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (58, 'Loan_transaction_add_loan_transaction', 'Add Loan Transaction', 'Loan_transaction', 'add_loan_transaction', '2025-06-19 22:10:33', '2025-06-19 22:10:33');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (59, 'Loan_transaction_edit_loan_transaction', 'Edit Loan Transaction', 'Loan_transaction', 'edit_loan_transaction', '2025-06-19 22:10:33', '2025-06-19 22:10:33');
-INSERT INTO `permissions` (`id`, `name`, `description`, `controller`, `method`, `created_at`, `updated_at`) VALUES (60, 'Loan_transaction_delete_loan_transaction', 'Delete Loan Transaction', 'Loan_transaction', 'delete_loan_transaction', '2025-06-19 22:10:34', '2025-06-19 22:10:34');
 
 
 #
